@@ -8,8 +8,9 @@
   <div class="actions">
     <button (click)="refreshList()">Refresh  {{errorMode ? ' (will error out)' : ''}}</button>
     <button (click)="clearList()">Clear {{errorMode ? ' (will error out)' : ''}}</button>
+    <button (click)="throwError()">Throw error</button>
   </div>
-   <h4>
+  <h4>
     List of content:
   </h4>
   <ul>
@@ -17,7 +18,7 @@
                 let i = index;
                 let last = last;"
         [class.current]="last">
-      {{i+1}}) {{item.author}}: {{item.topic}}
+      {{i + 1}}) {{item.author}}: {{item.topic}}
     </li>
   </ul>
 </div>

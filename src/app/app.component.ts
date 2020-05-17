@@ -33,10 +33,11 @@ type DevTalk = {
 export class AppComponent implements OnInit {
   title = 'liki-devtalk-sentry';
   listOfContent: DevTalk[];
+  listOfContentRecent: DevTalk[];
   errorMode = false;
 
   ngOnInit() {
-    this.listOfContent = [...initialListOfContent];
+    this.listOfContent = this.listOfContentRecent = [...initialListOfContent];
   }
   refreshList() {
     const devTalk: DevTalk = {
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
       topic: '[AMA] Programista na bezrobociu',
     };
     if (this.errorMode) {
+      this.listOfContentRecent = [...this.listOfContent];
       // @ts-ignore
       this.listOfContent = {
         ...this.listOfContent,
@@ -69,10 +71,17 @@ export class AppComponent implements OnInit {
   }
 
   toggleErrorMode() {
+    if (this.errorMode) {
+      this.listOfContent = [...this.listOfContentRecent];
+    }
     this.errorMode = !this.errorMode;
   }
 
   assignUndefined() {
     this.listOfContent = undefined;
+  }
+
+  throwError() {
+    throw Error('New awesome error!');
   }
 }
