@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "predeploy": "npm run build:production",
-    "deploy": "gh-pages -b master -d dist/liki-devtalk-sentry"
+    "deploy": "gh-pages -b gh-pages -d dist/liki-devtalk-sentry"
   },
   "private": true,
   "dependencies": {
