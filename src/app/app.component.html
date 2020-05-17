@@ -1,0 +1,12 @@
+<div class="box">
+  <h2>Liki DevTalk #NO</h2>
+  <button (click)="refreshList()">Refresh (will error out)</button>
+  <button (click)="clearList()">Clear (will error out)</button>
+
+  <p>
+    List of content:
+  </p>
+  <ul>
+    <li *ngFor="let item of listOfContent">{{item}}</li>
+  </ul>
+</div>

@@ -1,13 +1,17 @@
 {
   "name": "liki-devtalk-sentry",
+  "homepage": "https://lyczos.github.io/liki-devtalk-sentry",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:production": "ng build -c production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "predeploy": "npm run build:production",
+    "deploy": "gh-pages -b master -d build"
   },
   "private": true,
   "dependencies": {
@@ -29,10 +33,12 @@
     "@angular/cli": "~8.3.26",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@sentry/cli": "^1.52.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "gh-pages": "^2.2.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",

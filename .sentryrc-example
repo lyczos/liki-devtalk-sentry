@@ -1,0 +1,7 @@
+[defaults]
+org=sentry-test-wh
+project=angular
+
+[auth]
+token=token
+# https://sentry.io/settings/account/api/auth-tokens/ or use "sentry-cli login" command
