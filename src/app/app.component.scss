@@ -1,3 +1,25 @@
 .box {
   padding: 25px;
+  text-align: center;
+}
+.current {
+  font-weight: bold;
+}
+.actions {
+  margin: 5px 0;
+  button {
+    margin: 5px;
+    cursor: pointer;
+  }
+}
+
+.error-mode {
+  padding: 5px 10px;
+  margin: 10px;
+  display: inline-block;
+  background: green;
+  color: #fff;
+}
+.error-mode-on {
+  background: darkred;
 }
