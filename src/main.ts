@@ -8,6 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 
+window['APP_RELEASE_VERSION'] = environment.release;
+
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch((err) => console.error(err));

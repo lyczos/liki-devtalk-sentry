@@ -9,14 +9,14 @@
 SENTRY_PATH="./node_modules/.bin/sentry-cli"
 GIT_REPO="lyczos/liki-devtalk-sentry" # we need it if we want to associate releases with commits/versions
 DIST_DIR="dist/liki-devtalk-sentry/"
+FILENAME_WITH_VERSION="RELEASE_VERSION" # name of file that's includes app version number/hash
 
 ENV_VAR=$1
 if [ -n "$ENV_VAR" ]; then
-  FILE=SENTRY_APP_VERSION # name of file that's includes app version number/hash
-  if [ -f "$FILE" ]; then
-    # Take app version form file SENTRY_APP_VERSION
-    VERSION=$(head -n1 $FILE | tr -d '\n')
-    echo "Version was taken from $FILE file:  $VERSION"
+  if [ -f "$FILENAME_WITH_VERSION" ]; then
+    # Take app version form file RELEASE_VERSION
+    VERSION=$(head -n1 $FILENAME_WITH_VERSION | tr -d '\n')
+    echo "Version was taken from $FILENAME_WITH_VERSION file:  $VERSION"
   else
     # Take app version form sentry-cli (it will use most recent commit hash)
     VERSION=$($SENTRY_PATH releases propose-version)
