@@ -40,8 +40,11 @@ jobs:
           name: List nod
           command: ls -la ./node_modules
       - run:
+          name: Install GH-Pages
+          command: npm install -g gh-pages
+      - run:
           name: Deploy Master to GitHub Pages
-          command: npm run deploy -- --user "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
+          command: gh-pages gh-pages -b gh-pages -d dist/liki-devtalk-sentry -u "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
