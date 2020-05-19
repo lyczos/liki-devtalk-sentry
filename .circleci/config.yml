@@ -5,12 +5,16 @@ jobs:
     environment:
       SENTRY_ORG: sentry-test-wh
       SENTRY_PROJECT: angular
-      GIT_COMMIT_AUTHOR_EMAIL: git log --format=%ae -n 1 $CIRCLE_SHA1
-      GIT_COMMIT_AUTHOR_NAME: git log --format=%an -n 1 $CIRCLE_SHA1
+      GIT_COMMIT_AUTHOR_EMAIL: $(eval git log --format=%ae -n 1 ${CIRCLE_SHA1})
+#      GIT_COMMIT_AUTHOR_NAME: git log --format=%an -n 1 $CIRCLE_SHA1
     docker:
       - image: circleci/node:12.9.1-browsers
     steps:
       - checkout
+      - run:
+          name: Set env vars
+          command: |
+            echo 'export GIT_COMMIT_AUTHOR_NAME=$(eval git log --format=%an -n 1 ${CIRCLE_SHA1})' >> $BASH_ENV
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
