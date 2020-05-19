@@ -56,44 +56,6 @@ jobs:
           paths:
             - dist
             - package.json
-#            - sentry-release.sh
-#  deploy:
-#    docker:
-#      - image: circleci/node:12.9.1-browsers
-#    working_directory: ~/project
-#    environment:
-#      SENTRY_ORG: sentry-test-wh
-#      SENTRY_PROJECT: angular
-#      GIT_COMMIT_AUTHOR_EMAIL: git log --format=%ae -n 1 $CIRCLE_SHA1
-#      GIT_COMMIT_AUTHOR_NAME: git log --format=%an -n 1 $CIRCLE_SHA1
-#    steps:
-#      - checkout
-#      - run:
-#          name: Show current branch
-#          command: echo ${CIRCLE_BRANCH}
-##      - run:
-##          name: Set GIT Author Email
-##          command: git config --global user.email ${GIT_COMMIT_AUTHOR_EMAIL}
-##      - run:
-##          name: Set GIT Author Name
-##          command: git config --global user.name ${GIT_COMMIT_AUTHOR_NAME}
-#      - run:
-#          name: List files
-#          command: ls -la
-#      - restore_cache:
-#          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-##      - run:
-##          name: Install GH-Pages
-##          command: npm install --save-dev gh-pages
-##      - run:
-##          name: Install Sentry CLI
-##          command: npm install --save-dev @sentry/cli
-#      - run:
-#          name: List node modules
-#          command: ls -la ./node_modules
-#      - run:
-#          name: Deploy Master to GitHub Pages
-#          command: ./node_modules/gh-pages/bin/gh-pages --user "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
 
 workflows:
   version: 2.1
@@ -103,9 +65,3 @@ workflows:
          filters:
             branches:
               only: master
-#      - deploy:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
