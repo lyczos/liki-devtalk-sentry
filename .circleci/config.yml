@@ -35,8 +35,8 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
-            - package.json
-            - sentry-release.sh
+#            - package.json
+#            - sentry-release.sh
   deploy:
     docker:
       - image: circleci/node:12.9.1-browsers
@@ -51,12 +51,12 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
-      - run:
-          name: Set GIT Author Email
-          command: git config --global user.email ${GIT_COMMIT_AUTHOR_EMAIL}
-      - run:
-          name: Set GIT Author Name
-          command: git config --global user.name ${GIT_COMMIT_AUTHOR_NAME}
+#      - run:
+#          name: Set GIT Author Email
+#          command: git config --global user.email ${GIT_COMMIT_AUTHOR_EMAIL}
+#      - run:
+#          name: Set GIT Author Name
+#          command: git config --global user.name ${GIT_COMMIT_AUTHOR_NAME}
       - run:
           name: List files
           command: ls -la
@@ -69,8 +69,11 @@ jobs:
           name: Install Sentry CLI
           command: npm install --save-dev @sentry/cli
       - run:
+          name: List node modules
+          command: ls -la ./node_modules
+      - run:
           name: Deploy Master to GitHub Pages
-          command: npm run deploy
+          command: gh-pages --user "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
 
 workflows:
   version: 2.1
