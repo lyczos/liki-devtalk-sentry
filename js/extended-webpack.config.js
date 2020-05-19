@@ -12,7 +12,7 @@ let sourceOfVersion = '';
 module.exports = (config) => {
   config.plugins.push(new webpack.DefinePlugin({
     'appProcess.env': {
-      [versionKeyName]:  getVersion() // config.mode === 'production' ?  getVersion() : null // can be limited to all prod only if needed
+      [versionKeyName]:  getVersion() // config.mode === 'production' ?  getVersion() : null // can be limited to prod only if needed
     }
   }));
 

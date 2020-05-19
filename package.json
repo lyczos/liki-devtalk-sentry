@@ -8,7 +8,7 @@
     "build": "ng build",
     "build:production": "ng build -c production",
     "sentry-release:production": "./sentry-release.sh production",
-    "predeploy": "npm run build:production && npm run sentry-release:production && rm -rf dist/liki-devtalk-sentry/*.js.map",
+    "predeploy": "npm run sentry-release:production && rm -rf dist/liki-devtalk-sentry/*.js.map",
     "deploy": "gh-pages -b gh-pages -d dist/liki-devtalk-sentry",
     "test": "ng test",
     "lint": "ng lint",
