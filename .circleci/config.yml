@@ -43,6 +43,12 @@ jobs:
           name: Building
           command: npm run build:production
       - run:
+          name: Deploy to Sentry
+          command: npm run sentry-release:production
+      - run:
+          name: Remove source maps
+          command: npm run remove-source-maps
+      - run:
           name: Deploy Master to GitHub Pages
           command: ./node_modules/gh-pages/bin/gh-pages.js -b gh-pages -d dist/liki-devtalk-sentry -u "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
       - save_cache:
