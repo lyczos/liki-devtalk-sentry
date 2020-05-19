@@ -62,18 +62,18 @@ jobs:
           command: ls -la
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Install GH-Pages
-          command: npm install --save-dev gh-pages
-      - run:
-          name: Install Sentry CLI
-          command: npm install --save-dev @sentry/cli
+#      - run:
+#          name: Install GH-Pages
+#          command: npm install --save-dev gh-pages
+#      - run:
+#          name: Install Sentry CLI
+#          command: npm install --save-dev @sentry/cli
       - run:
           name: List node modules
           command: ls -la ./node_modules
       - run:
           name: Deploy Master to GitHub Pages
-          command: gh-pages --user "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
+          command: ./node_modules/gh-pages/bin/gh-pages --user "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
 
 workflows:
   version: 2.1
