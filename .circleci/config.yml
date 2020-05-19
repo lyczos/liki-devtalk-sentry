@@ -36,11 +36,15 @@ jobs:
           paths:
             - dist
             - package.json
+            - sentry-release.sh
   deploy:
     docker:
       - image: circleci/node:12.9.1-browsers
 #      - image: circleci/node:chakracore-8.11-browsers-legacy
     working_directory: ~/project
+    environment:
+      SENTRY_ORG: sentry-test-wh
+      SENTRY_PROJECT: angular
     steps:
       - run:
           name: Show current branch
@@ -50,9 +54,12 @@ jobs:
           command: ls -la
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-#      - run:
-#          name: Install Firebase
-#          command: npm install --save-dev firebase-tools
+      - run:
+          name: Install GH-Pages
+          command: npm install --save-dev gh-pages
+      - run:
+          name: Install Sentry CLI
+          command: npm install --save-dev @sentry/cli
       - run:
           name: Deploy Master to GitHub Pages
           command: npm run deploy
