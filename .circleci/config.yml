@@ -9,11 +9,11 @@ jobs:
       - image: circleci/node:12.9.1-browsers
     steps:
       - checkout
-      # [AUTH NOTE]
-      # Please, check out [AUTH NOTE] at "Deploy Master to GitHub Pages" Step
-      - add_ssh_keys:
-          fingerprints:
-            - "27:0f:d9:4b:88:1a:c3:84:da:d5:22:70:67:39:f8:6f"
+#      # [AUTH NOTE]
+#      # Please, check out [AUTH NOTE] at "Deploy Master to GitHub Pages" Step
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "27:0f:d9:4b:88:1a:c3:84:da:d5:22:70:67:39:f8:6f"
       - run:
           name: Set environment variables for gh-pages
           command: |
