@@ -9,6 +9,8 @@ jobs:
       - image: circleci/node:12.9.1-browsers
     steps:
       - checkout
+      # [AUTH NOTE]
+      # Please, check out [AUTH NOTE] at "Deploy Master to GitHub Pages" Step
       - add_ssh_keys:
           fingerprints:
             - "27:0f:d9:4b:88:1a:c3:84:da:d5:22:70:67:39:f8:6f"
@@ -33,6 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
+#      # Split those two steps to separate jobs
 #      - run:
 #          name: Linting
 #          command: npm run lint
@@ -48,6 +51,12 @@ jobs:
       - run:
           name: Remove source maps
           command: npm run remove-source-maps
+      # [AUTH NOTE]
+      # To be able to run gh-pages you have to add permissions (keys)
+      # between CircleCI and GitHub
+      # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
+      # ssh-keygen -C "your.mail@gmail.com" -f key-file-name
+      # key-file-name | pbcopy
       - run:
           name: Deploy Master to GitHub Pages
           command: ./node_modules/gh-pages/bin/gh-pages.js -b gh-pages -d dist/liki-devtalk-sentry -u "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>"
@@ -59,9 +68,13 @@ jobs:
 
 workflows:
   version: 2.1
-  -deploy:
+  build_and_deploy:
     jobs:
       - build:
-         filters:
+          filters:
+            # ignore any commit on any branch by default
             branches:
-              only: master
+              ignore: /.*/
+            # run only when new tag is created (v.3 v.3.1)
+            tags:
+              only: /^v.*/
