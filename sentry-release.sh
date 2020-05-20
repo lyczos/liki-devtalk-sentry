@@ -33,7 +33,7 @@ if [ -n "$ENV_VAR" ]; then
     echo "Version was taken from GIT: $VERSION"
   fi
   # Start new release (for Sentry)
-  $SENTRY releases new "$VERSION"
+  $SENTRY releases new "$VERSION"  # 3bcbadac
   # Upload source maps
   $SENTRY releases files "$VERSION" upload-sourcemaps --rewrite $DIST_DIR # Path to bundle
   # Set up version to enhance error targeting
