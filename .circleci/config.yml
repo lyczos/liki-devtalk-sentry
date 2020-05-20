@@ -9,11 +9,6 @@ jobs:
       - image: circleci/node:12.9.1-browsers
     steps:
       - checkout
-#      # [AUTH NOTE]
-#      # Please, check out [AUTH NOTE] at "Deploy Master to GitHub Pages" Step
-#      - add_ssh_keys:
-#          fingerprints:
-#            - "27:0f:d9:4b:88:1a:c3:84:da:d5:22:70:67:39:f8:6f"
       - run:
           name: Set environment variables for gh-pages
           command: |
@@ -51,12 +46,6 @@ jobs:
       - run:
           name: Remove source maps
           command: npm run remove-source-maps
-      # [AUTH NOTE]
-      # To be able to run gh-pages you have to add permissions (keys)
-      # between CircleCI and GitHub
-      # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
-      # ssh-keygen -C "your.mail@gmail.com" -f key-file-name
-      # key-file-name | pbcopy
       - run:
           name: Deploy Master to GitHub Pages
           command: ./node_modules/gh-pages/bin/gh-pages.js -b gh-pages -d dist/liki-devtalk-sentry -u "${GIT_COMMIT_AUTHOR_NAME} <${GIT_COMMIT_AUTHOR_EMAIL}>" -m "[skip ci] Update"

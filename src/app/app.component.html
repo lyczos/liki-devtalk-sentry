@@ -8,7 +8,7 @@
   <div class="actions">
     <button (click)="refreshList()">Refresh  {{errorMode ? ' (will error out)' : ''}}</button>
     <button (click)="clearList()">Clear {{errorMode ? ' (will error out)' : ''}}</button>
-    <button (click)="throwError()">Throw error</button>
+    <button  *ngIf="errorMode" (click)="throwError()">Throw error</button>
   </div>
   <h4>
     List of content:
